@@ -1,0 +1,71 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "Imperial German Navy WWI Torpedo Roster for Unterseeboot"
+  },
+  "torpedoes": [
+    {
+      "id": "c_06_450mm",
+      "name": "45cm C/06 Bronze Torpedo",
+      "caliberMm": 450,
+      "serviceYears": [1914, 1918],
+      "propulsion": "wet_heater_steam",
+      "speedKnots": 32.0,
+      "maxRangeMeters": 3000,
+      "warheadKg": 122,
+      "hullDamage": 65,
+      "reliability": {
+        "dudProbability": 0.14,
+        "prematureDetonationProb": 0.03,
+        "depthDeviationMeters": 1.2
+      },
+      "stealth": {
+        "bubbleWakeVisibility": 0.9,
+        "acousticNoiseLevel": 0.85
+      },
+      "description": "Early-war 45cm torpedo used by coastal UB-boats. Leaves a prominent bubble trail and suffers from high dud rates at oblique impact angles."
+    },
+    {
+      "id": "g_6_500mm",
+      "name": "50cm G/6 Wet-Heater Torpedo",
+      "caliberMm": 500,
+      "serviceYears": [1914, 1918],
+      "propulsion": "wet_heater_steam",
+      "speedKnots": 35.0,
+      "maxRangeMeters": 5000,
+      "warheadKg": 160,
+      "hullDamage": 95,
+      "reliability": {
+        "dudProbability": 0.11,
+        "prematureDetonationProb": 0.02,
+        "depthDeviationMeters": 0.9
+      },
+      "stealth": {
+        "bubbleWakeVisibility": 0.85,
+        "acousticNoiseLevel": 0.8
+      },
+      "description": "Standard early-to-mid-war fleet torpedo. Carries a heavy 160kg warhead capable of breaking the back of most merchant steamers in a single hit."
+    },
+    {
+      "id": "g_7_500mm",
+      "name": "50cm G/7 Long-Range Torpedo",
+      "caliberMm": 500,
+      "serviceYears": [1917, 1918],
+      "propulsion": "wet_heater_steam",
+      "speedKnots": 37.0,
+      "maxRangeMeters": 9300,
+      "warheadKg": 195,
+      "hullDamage": 125,
+      "reliability": {
+        "dudProbability": 0.07,
+        "prematureDetonationProb": 0.01,
+        "depthDeviationMeters": 0.5
+      },
+      "stealth": {
+        "bubbleWakeVisibility": 0.75,
+        "acousticNoiseLevel": 0.75
+      },
+      "description": "Improved late-war 7-meter torpedo with superior range, speed, and reliability. Essential for engaging fast troop transports and escorted convoys."
+    }
+  ]
+}

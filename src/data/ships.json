@@ -1,0 +1,201 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "WWI Atlantic Merchant and Naval Vessel Roster for Unterseeboot"
+  },
+  "vessels": [
+    {
+      "id": "tramp_steamer",
+      "recognition": { "lengthMeters": 92, "beamMeters": 13, "mastHeightMeters": 24, "masts": [-0.31, 0.34], "funnels": [0.05], "bridge": -0.12 },
+      "name": "British Tramp Steamer",
+      "category": "merchant",
+      "faction": "allied",
+      "tonnage": 3200,
+      "maxSpeedKnots": 10.5,
+      "hullPoints": 40,
+      "acousticSignature": 0.65,
+      "visibilityRadius": 1.0,
+      "armament": {
+        "hasDeckGun": false,
+        "gunCaliberMm": 0,
+        "depthCharges": 0
+      },
+      "behavior": {
+        "isQShip": false,
+        "surrendersToWarningShot": true,
+        "diplomaticPenalty": 0
+      },
+      "spawnYears":[1914, 1918],
+      "description": "Slow, unarmed cargo vessel. Ideal target for deck gun attacks to conserve torpedoes."
+    },
+    {
+      "id": "neutral_freighter",
+      "recognition": { "lengthMeters": 108, "beamMeters": 15, "mastHeightMeters": 27, "masts": [-0.35, 0.28], "funnels": [0.13], "bridge": -0.17 },
+      "name": "Neutral Merchant (Dutch/American)",
+      "category": "merchant",
+      "faction": "neutral",
+      "tonnage": 4500,
+      "maxSpeedKnots": 12.0,
+      "hullPoints": 45,
+      "acousticSignature": 0.7,
+      "visibilityRadius": 1.0,
+      "armament": {
+        "hasDeckGun": false,
+        "gunCaliberMm": 0,
+        "depthCharges": 0
+      },
+      "behavior": {
+        "isQShip": false,
+        "surrendersToWarningShot": true,
+        "diplomaticPenalty": 25
+      },
+      "spawnYears":[1914, 1918],
+      "description": "Carries non-belligerent flags. Sinking without inspection risks severe diplomatic repercussions."
+    },
+    {
+      "id": "defensively_armed_merchant",
+      "recognition": { "lengthMeters": 123, "beamMeters": 16, "mastHeightMeters": 29, "masts": [-0.31, 0.38], "funnels": [0.02, 0.18], "bridge": -0.17 },
+      "name": "Defensively Armed Merchantman (DAMS)",
+      "category": "merchant",
+      "faction": "allied",
+      "tonnage": 5800,
+      "maxSpeedKnots": 13.5,
+      "hullPoints": 65,
+      "acousticSignature": 0.75,
+      "visibilityRadius": 1.1,
+      "armament": {
+        "hasDeckGun": true,
+        "gunCaliberMm": 102,
+        "depthCharges": 0
+      },
+      "behavior": {
+        "isQShip": false,
+        "surrendersToWarningShot": false,
+        "diplomaticPenalty": 0
+      },
+      "spawnYears":[1915, 1918],
+      "description": "Cargo liner fitted with a stern-mounted 4-inch naval gun. Dangerous to engage on the surface."
+    },
+    {
+      "id": "q_ship_decoy",
+      "recognition": { "lengthMeters": 89, "beamMeters": 13, "mastHeightMeters": 23, "masts": [-0.31, 0.34], "funnels": [0.05], "bridge": -0.12 },
+      "name": "Special Service Vessel (Q-Ship)",
+      "category": "escort",
+      "faction": "allied",
+      "apparentType": "tramp_steamer",
+      "tonnage": 2900,
+      "maxSpeedKnots": 11.5,
+      "hullPoints": 85,
+      "acousticSignature": 0.65,
+      "visibilityRadius": 1.0,
+      "armament": {
+        "hasDeckGun": true,
+        "gunCaliberMm": 102,
+        "depthCharges": 6
+      },
+      "behavior": {
+        "isQShip": true,
+        "surrendersToWarningShot": false,
+        "diplomaticPenalty": 0
+      },
+      "spawnYears":[1915, 1918],
+      "description": "Heavily armed Royal Navy decoy disguised as a harmless steamer to lure U-boats into surface gun range."
+    },
+    {
+      "id": "troop_transport",
+      "recognition": { "lengthMeters": 163, "beamMeters": 19, "mastHeightMeters": 38, "masts": [-0.37, 0.37], "funnels": [-0.13, 0.03, 0.19], "bridge": -0.25 },
+      "name": "Allied Troop Transport",
+      "category": "high_value",
+      "faction": "allied",
+      "tonnage": 11500,
+      "maxSpeedKnots": 17.5,
+      "hullPoints": 110,
+      "acousticSignature": 0.9,
+      "visibilityRadius": 1.35,
+      "armament": {
+        "hasDeckGun": true,
+        "gunCaliberMm": 120,
+        "depthCharges": 0
+      },
+      "behavior": {
+        "isQShip": false,
+        "surrendersToWarningShot": false,
+        "diplomaticPenalty": 5
+      },
+      "spawnYears":[1914, 1918],
+      "description": "Fast converted ocean liner carrying reinforcements. Requires careful torpedo lead calculation."
+    },
+    {
+      "id": "flower_class_sloop",
+      "recognition": { "lengthMeters": 80, "beamMeters": 10, "mastHeightMeters": 22, "masts": [-0.22, 0.32], "funnels": [0.01, 0.2], "bridge": -0.31 },
+      "name": "Flower-Class Anti-Submarine Sloop",
+      "category": "warship",
+      "faction": "allied",
+      "tonnage": 1250,
+      "maxSpeedKnots": 16.5,
+      "hullPoints": 75,
+      "acousticSignature": 0.85,
+      "visibilityRadius": 0.85,
+      "armament": {
+        "hasDeckGun": true,
+        "gunCaliberMm": 102,
+        "depthCharges": 12
+      },
+      "behavior": {
+        "isQShip": false,
+        "surrendersToWarningShot": false,
+        "diplomaticPenalty": 0
+      },
+      "spawnYears":[1915, 1918],
+      "description": "Built specifically for convoy escort and U-boat hunting. Equipped with early hydrophones and depth charges."
+    },
+    {
+      "id": "royal_navy_destroyer",
+      "recognition": { "lengthMeters": 84, "beamMeters": 8, "mastHeightMeters": 20, "masts": [-0.23], "funnels": [-0.07, 0.09, 0.25], "bridge": -0.34 },
+      "name": "R-Class Destroyer",
+      "category": "warship",
+      "faction": "allied",
+      "tonnage": 1050,
+      "maxSpeedKnots": 35.0,
+      "hullPoints": 90,
+      "acousticSignature": 1.0,
+      "visibilityRadius": 0.8,
+      "armament": {
+        "hasDeckGun": true,
+        "gunCaliberMm": 102,
+        "depthCharges": 24
+      },
+      "behavior": {
+        "isQShip": false,
+        "surrendersToWarningShot": false,
+        "diplomaticPenalty": 0
+      },
+      "spawnYears":[1916, 1918],
+      "description": "Extremely fast hunter-killer warship. Will attempt to ram surfaced U-boats or saturate submerged areas with depth charges."
+    },
+    {
+      "id": "armored_cruiser",
+      "recognition": { "lengthMeters": 147, "beamMeters": 21, "mastHeightMeters": 36, "masts": [-0.3, 0.32], "funnels": [-0.14, 0.02, 0.18], "bridge": -0.25 },
+      "name": "Royal Navy Armored Cruiser",
+      "category": "capital_ship",
+      "faction": "allied",
+      "tonnage": 14600,
+      "maxSpeedKnots": 22.0,
+      "hullPoints": 220,
+      "acousticSignature": 0.95,
+      "visibilityRadius": 1.5,
+      "armament": {
+        "hasDeckGun": true,
+        "gunCaliberMm": 234,
+        "depthCharges": 0
+      },
+      "behavior": {
+        "isQShip": false,
+        "surrendersToWarningShot": false,
+        "diplomaticPenalty": 0
+      },
+      "spawnYears":[1914, 1918],
+      "description": "Massive prestige target. Requires multiple torpedo hits to sink and is lethal if you are spotted on the surface."
+    }
+  ]
+}

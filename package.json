@@ -1,0 +1,15 @@
+{
+  "name": "unterseeboot",
+  "version": "0.1.0",
+  "private": true,
+  "productName": "Unterseeboot",
+  "description": "A North Atlantic submarine navigation game set in 1917.",
+  "type": "module",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "45.3.0"
+  }
+}

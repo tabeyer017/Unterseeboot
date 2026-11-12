@@ -1,0 +1,200 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "Imperial German Navy (Kaiserliche Marine) WWI U-Boat Classes for Unterseeboot"
+  },
+  "classes": [
+    {
+      "id": "type_ub_i",
+      "name": "Type UB I (Coastal)",
+      "designationPrefix": "UB",
+      "serviceYears": [1915, 1918],
+      "displacementTons": 127,
+      "crewComplement": 14,
+      "speeds": {
+        "maxSurfaceKnots": 6.5,
+        "maxSubmergedKnots": 5.5,
+        "reverseKnots": 3.0
+      },
+      "maneuverability": {
+        "turnRateDegPerSec": 3.8,
+        "diveTimeSec": 33,
+        "testDepthMeters": 50,
+        "crushDepthMeters": 75
+      },
+      "resources": {
+        "maxDieselLiters": 3500,
+        "maxBatteryCapacity": 100,
+        "fuelBurnRateFull": 1.0,
+        "batteryDrainRateFull": 1.4,
+        "batteryRechargeRate": 0.9,
+        "maxOxygenHours": 18
+      },
+      "armament": {
+        "bowTubes": 2,
+        "sternTubes": 0,
+        "torpedoCaliberMm": 450,
+        "totalTorpedoes": 2,
+        "torpedoReloadTimeSec": 0,
+        "deckGun": {
+          "equipped": true,
+          "caliberMm": 50,
+          "maxAmmo": 60,
+          "reloadSec": 5,
+          "maxRangeMeters": 2200
+        }
+      },
+      "sensors": {
+        "periscopeHeightMeters": 10,
+        "hydrophoneEquipped": false,
+        "hydrophoneRangeMeters": 0,
+        "wirelessRangeKm": 150
+      },
+      "description": "Small coastal attack boat. Fast to dive and agile in shallow channel waters, but severely limited in range, speed, and torpedo capacity."
+    },
+    {
+      "id": "type_u_31",
+      "name": "Type U-31 (Ocean-Going)",
+      "designationPrefix": "U",
+      "serviceYears":[1914, 1918],
+      "displacementTons": 685,
+      "crewComplement": 35,
+      "speeds": {
+        "maxSurfaceKnots": 16.4,
+        "maxSubmergedKnots": 9.7,
+        "reverseKnots": 4.5
+      },
+      "maneuverability": {
+        "turnRateDegPerSec": 2.4,
+        "diveTimeSec": 65,
+        "testDepthMeters": 50,
+        "crushDepthMeters": 85
+      },
+      "resources": {
+        "maxDieselLiters": 87000,
+        "maxBatteryCapacity": 100,
+        "fuelBurnRateFull": 1.3,
+        "batteryDrainRateFull": 1.1,
+        "batteryRechargeRate": 1.2,
+        "maxOxygenHours": 28
+      },
+      "armament": {
+        "bowTubes": 2,
+        "sternTubes": 2,
+        "torpedoCaliberMm": 500,
+        "totalTorpedoes": 6,
+        "torpedoReloadTimeSec": 420,
+        "deckGun": {
+          "equipped": true,
+          "caliberMm": 88,
+          "maxAmmo": 150,
+          "reloadSec": 6,
+          "maxRangeMeters": 4800
+        }
+      },
+      "sensors": {
+        "periscopeHeightMeters": 12,
+        "hydrophoneEquipped": true,
+        "hydrophoneRangeMeters": 4500,
+        "wirelessRangeKm": 600
+      },
+      "description": "The backbone of the German Atlantic fleet (including the famous U-35). Balanced speed, solid range, and a reliable 88mm deck gun for commerce raiding."
+    },
+    {
+      "id": "type_u_57",
+      "name": "Type U-57 (Mid-War Fleet)",
+      "designationPrefix": "U",
+      "serviceYears":[1916, 1918],
+      "displacementTons": 786,
+      "crewComplement": 36,
+      "speeds": {
+        "maxSurfaceKnots": 14.7,
+        "maxSubmergedKnots": 8.4,
+        "reverseKnots": 4.2
+      },
+      "maneuverability": {
+        "turnRateDegPerSec": 2.6,
+        "diveTimeSec": 45,
+        "testDepthMeters": 50,
+        "crushDepthMeters": 90
+      },
+      "resources": {
+        "maxDieselLiters": 110000,
+        "maxBatteryCapacity": 100,
+        "fuelBurnRateFull": 1.25,
+        "batteryDrainRateFull": 1.0,
+        "batteryRechargeRate": 1.35,
+        "maxOxygenHours": 32
+      },
+      "armament": {
+        "bowTubes": 2,
+        "sternTubes": 2,
+        "torpedoCaliberMm": 500,
+        "totalTorpedoes": 8,
+        "torpedoReloadTimeSec": 360,
+        "deckGun": {
+          "equipped": true,
+          "caliberMm": 105,
+          "maxAmmo": 220,
+          "reloadSec": 8,
+          "maxRangeMeters": 6500
+        }
+      },
+      "sensors": {
+        "periscopeHeightMeters": 12,
+        "hydrophoneEquipped": true,
+        "hydrophoneRangeMeters": 6500,
+        "wirelessRangeKm": 850
+      },
+      "description": "Improved mid-war ocean-going U-boat featuring faster crash-dive times, increased torpedo storage, and a heavy 105mm deck gun capable of outranging armed merchantmen."
+    },
+    {
+      "id": "type_u_139",
+      "name": "Type U-139 (U-Cruiser)",
+      "designationPrefix": "U",
+      "serviceYears":[1918, 1918],
+      "displacementTons": 1930,
+      "crewComplement": 62,
+      "speeds": {
+        "maxSurfaceKnots": 15.8,
+        "maxSubmergedKnots": 7.6,
+        "reverseKnots": 4.0
+      },
+      "maneuverability": {
+        "turnRateDegPerSec": 1.5,
+        "diveTimeSec": 85,
+        "testDepthMeters": 75,
+        "crushDepthMeters": 115
+      },
+      "resources": {
+        "maxDieselLiters": 340000,
+        "maxBatteryCapacity": 100,
+        "fuelBurnRateFull": 1.8,
+        "batteryDrainRateFull": 1.3,
+        "batteryRechargeRate": 1.5,
+        "maxOxygenHours": 44
+      },
+      "armament": {
+        "bowTubes": 4,
+        "sternTubes": 2,
+        "torpedoCaliberMm": 500,
+        "totalTorpedoes": 19,
+        "torpedoReloadTimeSec": 300,
+        "deckGun": {
+          "equipped": true,
+          "caliberMm": 150,
+          "maxAmmo": 400,
+          "reloadSec": 11,
+          "maxRangeMeters": 9200
+        }
+      },
+      "sensors": {
+        "periscopeHeightMeters": 14,
+        "hydrophoneEquipped": true,
+        "hydrophoneRangeMeters": 8000,
+        "wirelessRangeKm": 1500
+      },
+      "description": "Massive late-war submersible cruiser built for long-range Atlantic patrols. Carries 19 torpedoes and twin 150mm naval guns, though slow to dive and turn."
+    }
+  ]
+}

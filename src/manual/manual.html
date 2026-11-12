@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; base-uri 'none'">
+    <title>Unterseeboot Field Manual</title>
+    <link rel="stylesheet" href="manual.css">
+  </head>
+  <body>
+    <main aria-label="Unterseeboot Field Manual">
+      <article class="sheet cover" aria-labelledby="manual-title">
+        <div class="cover-frame">
+          <header class="cover-header running-head"><span>Kaiserliche Marine</span><span>Training edition · 1916</span></header>
+          <div class="cover-title">
+            <p class="kicker">U-boat service · North Atlantic</p>
+            <h1 id="manual-title">Unterseeboot <span>Field Manual</span></h1>
+            <p class="cover-deck">Patrol navigation, optical fire control, commerce raiding, and survival below the waterline.</p>
+          </div>
+          <figure class="plate">
+            <svg viewBox="0 0 680 205" role="img" aria-labelledby="cover-plate-title cover-plate-desc">
+              <title id="cover-plate-title">Side profile of a surfaced patrol submarine</title>
+              <desc id="cover-plate-desc">An engraved-style drawing shows the bow, deck gun, conning tower, and stern at the surface.</desc>
+              <path class="light" d="M22 110H658M22 150H658M22 177H658M64 22V182M144 22V182M224 22V182M304 22V182M384 22V182M464 22V182M544 22V182M624 22V182" opacity=".42"/>
+              <path class="shaded" d="M54 117q40-26 103-30l127-3 21-6 10-24h67l15 26 145 7q44 3 80 32l-16 15q-37 22-96 24H157q-64-2-103-28z"/>
+              <path class="etched" d="M55 119h562M72 134q52 12 97 13h359q43-2 79-13M144 88l-8 30m392-31 14 30m-224-62 9-10h48l7 9m-52-10V31h16m17 13V20h19m-67 53h77m-89 6h92m-153 8 8-13 15 1 9 9m-13-10-32-8m396 51h19v11h-24m24-22 8 6v25l-8 6z"/>
+              <path class="light" d="M100 144l11-9m12 13 14-10m13 12 15-10m13 11 15-10m13 11 15-10m13 11 15-10m13 11 15-10m13 11 15-10m13 11 15-10m13 11 15-10m13 11 15-10m13 11 15-10m13 11 15-10m13 11 15-10m13 11 15-10m13 10 15-10m13 7 15-10"/>
+              <path class="accent" d="M32 120h69m-52 6h23m532-6h49m-34 8h23"/>
+              <path class="light" d="M178 52h35l37 21m147-34h62l-65 35m-268 91v15h419v-15"/>
+              <text x="96" y="55">Deck gun</text><text x="464" y="43">Conning tower</text>
+              <text class="tiny" x="126" y="194">BOW</text><text class="tiny" x="545" y="194" text-anchor="end">STERN</text>
+            </svg>
+          </figure>
+          <nav aria-label="Contents">
+            <p class="kicker">Contents</p>
+            <ol class="contents">
+              <li><a href="#welcome"><span>I</span>Welcome &amp; context<span>02</span></a></li>
+              <li><a href="#navigation"><span>II</span>Chart Room<span>03</span></a></li>
+              <li><a href="#gunnery"><span>III</span>Optics &amp; gunnery<span>04</span></a></li>
+              <li><a href="#cruiser-rules"><span>IV</span>Cruiser rules<span>05</span></a></li>
+              <li><a href="#evasion"><span>V</span>Evasion &amp; damage control<span>06</span></a></li>
+              <li><a href="#reference"><span>VI</span>Quick reference<span>07</span></a></li>
+            </ol>
+          </nav>
+          <p class="cover-note">Player handbook for Unterseeboot. The 1916-inspired layout covers the full 1914-1918 campaign. Weapon and damage figures describe the simulation.</p>
+        </div>
+      </article>
+
+      <article class="sheet" id="welcome" aria-labelledby="welcome-title">
+        <header class="running-head"><span>Unterseeboot Field Manual</span><span>North Atlantic Patrol</span></header>
+        <div class="sheet-content">
+          <p class="chapter-number">Section I</p>
+          <h2 id="welcome-title">Welcome &amp; Historical Context</h2>
+          <p class="lede">You command a boat of the Kaiserliche Marine in a war fought as much over shipping as over territory.</p>
+          <p>Britain used sea power to restrict supplies reaching Germany. Germany sought to cut Britain’s own supply lines through submarine attacks on commerce. The campaign put merchant crews, passengers, and neutral shipping at risk. Disputes over these attacks helped widen the war.</p>
+          <dl class="timeline">
+            <div><dt>1914</dt><dd>Britain begins its naval blockade of Germany. German submarines show they can threaten warships as well as trade routes.</dd></div>
+            <div><dt>1915-1916</dt><dd>Germany declares a war zone around the British Isles in 1915. Attacks on merchant and passenger vessels bring diplomatic protests and changes in restrictions.</dd></div>
+            <div><dt>1917</dt><dd>Germany resumes unrestricted submarine warfare in February. The United States enters the war in April. Britain expands escorted convoys to protect ocean traffic.</dd></div>
+            <div><dt>1918</dt><dd>Convoys and escorts continue to guard sea lanes. The armistice of 11 November ends the fighting.</dd></div>
+          </dl>
+          <div class="inset">
+            <p class="kicker">First watch</p>
+            <p>Read the weather, check diesel, battery, and compressed air, then plot a course in open water. Observe a contact before selecting a weapon. Keep a route away from the engagement and leave enough reserve to dive or surface afterward.</p>
+          </div>
+          <h3>Patrol records</h3>
+          <p>Use <strong>Captain’s Log</strong> to review tonnage, crew experience, and patrol history. Save or load your campaign there. When planning the next patrol, the departure year governs which boats, torpedoes, and vessels are available.</p>
+          <p class="source-note note"><a href="https://historicengland.org.uk/research/current/discover-and-understand/military/first-world-war-home-front/sea/">Historic England, <cite>First World War: Sea</cite></a> · <a href="https://www.history.navy.mil/about-us/leadership/director/directors-corner/h-grams/h-gram-008/h-008-1.html">Naval History and Heritage Command, <cite>World War I 100th</cite></a></p>
+        </div>
+        <footer class="folio"><span>Kaiserliche Marine · Training edition</span><span>02</span></footer>
+      </article>
+
+      <article class="sheet" id="navigation" aria-labelledby="navigation-title">
+        <header class="running-head"><span>Unterseeboot Field Manual</span><span>Navigation</span></header>
+        <div class="sheet-content">
+          <p class="chapter-number">Section II</p>
+          <h2 id="navigation-title">Chart Room &amp; Dead Reckoning</h2>
+          <p class="lede">Plot a course with room to turn. Estimate your next position from heading, speed, and elapsed patrol time.</p>
+          <figure class="plate">
+            <svg viewBox="0 0 680 169" role="img" aria-labelledby="chart-plate-title chart-plate-desc">
+              <title id="chart-plate-title">A three-leg waypoint plot around a coast</title>
+              <desc id="chart-plate-desc">From the last fix, three numbered waypoints form a route around a shoal and a headland.</desc>
+              <path class="light" d="M20 35h640M20 65h640M20 95h640M20 125h640M20 155h640M50 20v138M110 20v138M170 20v138M230 20v138M290 20v138M350 20v138M410 20v138M470 20v138M530 20v138M590 20v138M650 20v138" opacity=".55"/>
+              <path class="land" d="M680 0H524l-13 19 13 15-37 14 13 20 37 6 16 24 35 12 33-19 29 14 30-2zM306 22l-22 11 3 18 19 7 11-15z"/>
+              <path class="accent" d="M92 125L218 103 368 120 472 71"/>
+              <path class="etched" d="M60 56V26m-6 9 6-9 6 9M98 125l-20-9v18z"/>
+              <g class="dark"><circle cx="218" cy="103" r="4"/><circle cx="368" cy="120" r="4"/><circle cx="472" cy="71" r="4"/></g>
+              <text x="57" y="19">N</text><text x="65" y="149">Last fix</text><text x="208" y="88">1</text><text x="364" y="143">2</text><text x="459" y="57">3</text><text x="540" y="48">Coast</text>
+            </svg>
+            <figcaption>Plate 1. Each turn is a waypoint. Leave clearance for the boat’s turning arc and for an escape leg.</figcaption>
+          </figure>
+          <div class="columns">
+            <div class="block">
+              <h3>Plot and follow the course</h3>
+              <ol>
+                <li>Left-click open water to append each waypoint. Clicking a visible contact instead selects it for combat.</li>
+                <li>Set the engine telegraph. The boat turns gradually toward the next waypoint and stops when the last leg is complete.</li>
+                <li>Right-click the chart to clear waypoints. Order <strong>Stop</strong> separately if you also want to halt.</li>
+              </ol>
+            </div>
+            <div class="block">
+              <h3>Mind the reserves</h3>
+              <p>Diesel powers surface movement and recharges the battery while underway. Submerged movement draws battery power. <strong>Slow</strong> or <strong>Half</strong> conserves reserves when there is time to maneuver.</p>
+              <p>Use <strong>1×</strong> near land, contacts, or damage. Use <strong>10×</strong> or <strong>50×</strong> on clear legs. Time compression advances patrol time, including resource use and threats.</p>
+            </div>
+          </div>
+          <div class="inset">
+            <p class="kicker">Dead reckoning example</p>
+            <p>Eight knots for 15 simulated minutes covers about two nautical miles. Advance the last fix along the boat’s actual heading. Recheck after turns and whenever the chart shows a speed change.</p>
+          </div>
+          <p class="note">Dashed shipping lanes indicate common traffic routes. A War Zone marking identifies a patrol sector. Hover over chart contacts to inspect them before closing.</p>
+        </div>
+        <footer class="folio"><span>Kaiserliche Marine · Training edition</span><span>03</span></footer>
+      </article>
+
+      <article class="sheet" id="gunnery" aria-labelledby="gunnery-title">
+        <header class="running-head"><span>Unterseeboot Field Manual</span><span>Optical Fire Control</span></header>
+        <div class="sheet-content">
+          <p class="chapter-number">Section III</p>
+          <h2 id="gunnery-title">Conning Tower &amp; Periscope Gunnery</h2>
+          <p class="lede">Open <strong>Periscope</strong> or press <kbd>Space</kbd>. Use binoculars at 0 m and the periscope at 10-14 m. Order 12 m to observe and launch submerged.</p>
+          <figure class="plate">
+            <svg viewBox="0 0 680 162" role="img" aria-labelledby="optics-plate-title optics-plate-desc">
+              <title id="optics-plate-title">Stadimeter reading and a positive angle on bow</title>
+              <desc id="optics-plate-desc">The mast spans sixteen mils in a sight. A separate plan view shows the observer on the starboard beam of a ship heading right.</desc>
+              <path class="light" d="M343 12v136M22 120h284m57 0h292" opacity=".54"/>
+              <circle class="etched" cx="166" cy="79" r="57"/>
+              <path class="light" d="M114 79h104m-52-49v99m-7-14h14m-14-13h14m-14-13h14m-14-13h14m-14-13h14m-14-13h14"/>
+              <path class="shaded" d="M120 102h93l-10 8h-73zM148 102V91h43v11m-23-11V59m17 32V78h5v13"/>
+              <path class="accent" d="M231 60h-8m4 0v42m-4 0h8"/>
+              <text x="239" y="85">16 mils</text><text class="tiny" x="47" y="151">MAST TOP TO WATERLINE</text>
+              <path class="shaded" d="M415 55h127l17 9-17 9H415z"/>
+              <path class="etched" d="M559 64h60l-10-5m10 5-10 5m-127 9v46m-6-1 6 8 6-8"/>
+              <path class="accent" d="M506 75q-3 18-24 23"/>
+              <text x="511" y="104">+90°</text><text x="450" y="147">Observer</text><text x="566" y="49">Heading</text>
+            </svg>
+            <figcaption>Plate 2. Measure the mast from waterline to tip. Angle on bow (AOB) is measured from the target’s bow to your line of sight.</figcaption>
+          </figure>
+          <ol>
+            <li><strong>Identify and range.</strong> Pan with <kbd>A</kbd>/<kbd>D</kbd> or drag. Use <kbd>Z</kbd> for 1.5× or 6× zoom. Check mast height and top speed in the <strong>Target Recognition Manual</strong>. Estimate range in meters as mast height × 1,000 ÷ mils. A 24 m mast spanning 16 mils is about 1,500 m away.</li>
+            <li><strong>Enter the firing solution.</strong> Center the contact and enter estimated range, target speed in knots, and AOB. Enter 0° bow-on, ±90° broadside, or ±180° stern-on. Use positive angles when you see the target’s starboard side and negative when you see its port side.</li>
+            <li><strong>Check the gyro and fire.</strong> The Torpedo Data Computer leads the target and indicates a bow or stern tube. Steer the boat if the solution lies more than 30° off that tube’s axis. Allow about 300 m for arming, and wait for the impact report before spending another torpedo.</li>
+          </ol>
+          <table>
+            <caption>Torpedo roster figures</caption>
+            <thead><tr><th scope="col">Model</th><th scope="col">Speed</th><th scope="col">Range</th><th scope="col">Base dud chance</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">45 cm C/06</th><td>32 kn</td><td>3,000 m</td><td>14%</td></tr>
+              <tr><th scope="row">50 cm G/6</th><td>35 kn</td><td>5,000 m</td><td>11%</td></tr>
+              <tr><th scope="row">50 cm G/7 (1917 onward)</th><td>37 kn</td><td>9,300 m</td><td>7%</td></tr>
+            </tbody>
+          </table>
+          <p class="note">The impact angle can raise the dud chance above the roster value. A dud deals no hull damage. Torpedo wakes can give an alert target time to evade.</p>
+        </div>
+        <footer class="folio"><span>Kaiserliche Marine · Training edition</span><span>04</span></footer>
+      </article>
+
+      <article class="sheet" id="cruiser-rules" aria-labelledby="cruiser-title">
+        <header class="running-head"><span>Unterseeboot Field Manual</span><span>Commerce Raiding</span></header>
+        <div class="sheet-content">
+          <p class="chapter-number">Section IV</p>
+          <h2 id="cruiser-title">Surface Raiders &amp; Cruiser Rules</h2>
+          <p class="lede">Surface fire saves torpedoes, but a boat at 0 m is exposed to return fire. Identify the ship and its escorts before closing.</p>
+          <div class="columns">
+            <div class="block">
+              <h3>Use the deck gun</h3>
+              <p>At the surface, select a visible contact in <strong>Tactical mode</strong> or center it in the conning tower and use <strong>Fire Deck Gun</strong>. Range and weather affect accuracy. Check shell supply, reload, and target range before each shot.</p>
+              <table>
+                <thead><tr><th scope="col">Class and gun</th><th scope="col">Max range</th></tr></thead>
+                <tbody><tr><th scope="row">Type U-31 · 88 mm</th><td>4,800 m</td></tr><tr><th scope="row">Type U-57 · 105 mm</th><td>6,500 m</td></tr></tbody>
+              </table>
+            </div>
+            <div class="block">
+              <h3>Claim a prize</h3>
+              <ol>
+                <li>Surface and select an unarmed merchant in the chart’s fire-control panel.</li>
+                <li>Use <strong>Warning shot</strong>. If the vessel stops and surrenders, close within 2 NM while it remains visible.</li>
+                <li>Choose <strong>Claim tonnage</strong>. Check the flag first. Claiming or sinking a neutral incurs a diplomatic penalty.</li>
+              </ol>
+            </div>
+          </div>
+          <figure class="plate">
+            <svg viewBox="0 0 680 148" role="img" aria-labelledby="decoy-plate-title decoy-plate-desc">
+              <title id="decoy-plate-title">A merchant outline and a revealed Q-ship</title>
+              <desc id="decoy-plate-desc">The same steamer silhouette appears twice. On the second drawing, a gun is exposed at the stern.</desc>
+              <path class="light" d="M340 12v122M23 103h634"/>
+              <g class="shaded">
+                <path d="M42 84h253l-24 19H66zM97 84V71h122v13m-80-13V60h34v11m-25-11V44h14v16"/>
+                <path d="M382 84h253l-24 19H406zM437 84V71h122v13m-80-13V60h34v11m-25-11V44h14v16"/>
+              </g>
+              <path class="etched" d="M90 84V44m137 40V42M430 84V44m137 40V42M90 47l49 14m88-17-54 17m257-14 49 14m88-17-54 17"/>
+              <path class="accent" d="M597 83v-9h12v9m-7-9 20-7m-21 5-5-28h-29"/>
+              <text class="tiny" x="42" y="124">APPARENT MERCHANT</text><text class="tiny" x="382" y="124">Q-SHIP REVEALED</text><text class="tiny" x="535" y="36">HIDDEN GUN</text>
+            </svg>
+            <figcaption>Plate 3. A Q-ship can use the same outline as a tramp steamer. The game reveals the decoy when you fire on it or come within 800 m with visual contact.</figcaption>
+          </figure>
+          <div class="inset">
+            <p class="kicker">Break contact</p>
+            <p>Treat an apparent steamer as unidentified until you have a safe approach. When hidden armament is revealed, order a dive, change course, and watch for escorts. Ordinary armed merchants can also return fire.</p>
+          </div>
+          <p class="note">Historical cruiser rules called for stopping and inspecting merchantmen and providing for the safety of crews and passengers before destruction, subject to rules about escape or resistance. The game represents a prize through surrender and tonnage credit.</p>
+          <p class="source-note note"><a href="https://history.state.gov/historicaldocuments/frus1916Supp/d191">U.S. Office of the Historian, <cite>Foreign Relations of the United States, 1916</cite></a> · <a href="https://www.iwm.org.uk/sites/default/files/files/2023-10/spies_large_print_guide.pdf">Imperial War Museums, <cite>Fishing for Submarines</cite></a></p>
+        </div>
+        <footer class="folio"><span>Kaiserliche Marine · Training edition</span><span>05</span></footer>
+      </article>
+
+      <article class="sheet" id="evasion" aria-labelledby="evasion-title">
+        <header class="running-head"><span>Unterseeboot Field Manual</span><span>Damage Control</span></header>
+        <div class="sheet-content">
+          <p class="chapter-number">Section V</p>
+          <h2 id="evasion-title">Evasion &amp; Damage Control</h2>
+          <p class="lede">Break the enemy’s line of contact, establish trim, and check the Control Room before committing to a second attack.</p>
+          <figure class="plate">
+            <svg viewBox="0 0 680 149" role="img" aria-labelledby="listening-plate-title listening-plate-desc">
+              <title id="listening-plate-title">Hydrophone sector and five U-boat compartments</title>
+              <desc id="listening-plate-desc">A fan extends forty-eight degrees to each side of the bow. A cutaway shows the bow room, quarters, control room, engines, and stern room.</desc>
+              <path class="light" d="M275 12v125"/>
+              <path class="shaded" d="M65 84 119 24A81 81 0 0 1 119 144z"/>
+              <path class="etched" d="M32 84h155m-8-5 8 5-8 5m-147 0 28-5-28-5z"/>
+              <path class="accent" d="M66 84l105-29" stroke-dasharray="4 4"/>
+              <text class="tiny" x="115" y="47">LISTENING CONE</text><text class="tiny" x="143" y="114">±48°</text><text class="tiny" x="22" y="30">BEARING ONLY</text>
+              <path class="shaded" d="M294 75q14-18 46-18h240q36 0 63 18v16q-21 16-63 16H339q-30-1-45-17z"/>
+              <path class="etched" d="M356 57v50m64-50v50m65-50v50m79-50v50m-129-50 9-15h23l9 15m-17-15V30h11"/>
+              <path class="accent" d="M485 92h79m-67 7h54"/>
+              <text class="tiny" x="316" y="86">BOW</text><text class="tiny" x="365" y="86">QUARTERS</text><text class="tiny" x="429" y="86">CONTROL</text><text class="tiny" x="502" y="83">ENGINE</text><text class="tiny" x="580" y="86">STERN</text>
+              <text class="tiny" x="494" y="127">BATTERY WELL</text>
+            </svg>
+            <figcaption>Plate 4. Hydrophones report a bearing from the forward sector. Flooding in the engine room can reach the battery well.</figcaption>
+          </figure>
+          <div class="columns">
+            <div class="block">
+              <h3>When an escort closes</h3>
+              <p>Escorts drop depth charges near their last fix on your boat. Turn away after diving. Below the optical band, use <strong>Scan</strong> with fitted hydrophones. Listen at lower speed when safe. Self-noise, storms, and station damage cut listening range.</p>
+              <p>Use the class limits on the depth gauge. Beyond test depth, the hull creaks and takes damage. At crush depth the boat is lost. A Type U-31 tests at 50 m and crushes at 85 m.</p>
+            </div>
+            <div class="block">
+              <h3>Send the repair parties</h3>
+              <p>Press <kbd>C</kbd>. Select one of four squads, then click a compartment. Parties drain water and repair machinery over time. Rotate tired squads to <strong>Rest in Quarters</strong>. <strong>Pump Bilges</strong> drains water using battery power.</p>
+              <p>Flooding pulls a slow boat down. Make 5 kn to arrest the downward drift if the engines can deliver it. Damage also slows reload, listening, diving, or propulsion according to the affected room.</p>
+            </div>
+          </div>
+          <div class="inset">
+            <p class="kicker">Chlorine or uncontrolled sinking</p>
+            <p>Seawater reaching the batteries while submerged produces chlorine. Green haze marks contaminated rooms, and exposure can incapacitate squads. Surface and use <strong>Ventilate Hull</strong>. If you cannot hold trim, <kbd>B</kbd> blows ballast, spends 25 percentage points of compressed air, and holds the surfaced boat for up to 90 simulated seconds.</p>
+          </div>
+        </div>
+        <footer class="folio"><span>Kaiserliche Marine · Training edition</span><span>06</span></footer>
+      </article>
+
+      <article class="sheet" id="reference" aria-labelledby="reference-title">
+        <header class="running-head"><span>Unterseeboot Field Manual</span><span>Watch Reference</span></header>
+        <div class="sheet-content">
+          <p class="chapter-number">Section VI</p>
+          <h2 id="reference-title">Keyboard Shortcuts &amp; Quick Reference</h2>
+          <p class="lede">Keep this page beside the chart during your first patrol.</p>
+          <table class="shortcuts">
+            <thead><tr><th scope="col">Control</th><th scope="col">Action</th><th scope="col">Where to use it</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><kbd>F1</kbd></th><td>Open this PDF</td><td>Game HUD or Help menu</td></tr>
+              <tr><th scope="row"><kbd>Space</kbd></th><td>Open optics or return to chart</td><td>Any patrol view</td></tr>
+              <tr><th scope="row"><kbd>C</kbd></th><td>Open Control Room or return to chart</td><td>Any patrol view</td></tr>
+              <tr><th scope="row"><kbd>A</kbd> / <kbd>D</kbd></th><td>Pan left or right</td><td>Conning tower or periscope</td></tr>
+              <tr><th scope="row"><kbd>Z</kbd></th><td>Switch 1.5× / 6× magnification</td><td>Conning tower or periscope</td></tr>
+              <tr><th scope="row"><kbd>B</kbd></th><td>Emergency Blow Ballast</td><td>Submerged, with at least 25% air</td></tr>
+              <tr><th scope="row"><kbd>Left click</kbd></th><td>Plot waypoint or select contact</td><td>Chart Room</td></tr>
+              <tr><th scope="row"><kbd>Right click</kbd></th><td>Clear waypoints</td><td>Chart Room</td></tr>
+              <tr><th scope="row"><kbd>Drag</kbd> / <kbd>click ship</kbd></th><td>Pan or center a silhouette</td><td>Conning tower or periscope</td></tr>
+              <tr><th scope="row"><kbd>Click squad</kbd>, then <kbd>room</kbd></th><td>Assign a repair party</td><td>Control Room</td></tr>
+            </tbody>
+          </table>
+          <table>
+            <caption>Orders and limits</caption>
+            <thead><tr><th scope="col">Situation</th><th scope="col">Order</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Use the deck gun or charge batteries</th><td>Surface at 0 m. Move under diesel to recharge.</td></tr>
+              <tr><th scope="row">Use the periscope or fire torpedoes from optics</th><td>Order 12 m. Deeper than 14 m, use the chart and hydrophones.</td></tr>
+              <tr><th scope="row">Deep evasion</th><td>Use the 40 m preset or depth slider. Check test and crush depths.</td></tr>
+              <tr><th scope="row">Assess a contact or manage an emergency</th><td>Return time compression to 1×.</td></tr>
+              <tr><th scope="row">Chlorine danger</th><td>Surface, open Control Room, and select Ventilate Hull.</td></tr>
+            </tbody>
+          </table>
+          <div class="inset">
+            <p class="kicker">Print and export</p>
+            <p>Choose <strong>Save Copy of PDF Manual…</strong> from the arrow beside <strong>Manual</strong> or from the <strong>Help</strong> menu. For a paper copy, print on US Letter at actual size, or use Fit on A4 paper.</p>
+          </div>
+        </div>
+        <footer class="folio"><span>Kaiserliche Marine · Training edition</span><span>07</span></footer>
+      </article>
+    </main>
+  </body>
+</html>

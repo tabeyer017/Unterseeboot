@@ -1,0 +1,60 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "Imperial German Navy WWI Atlantic Patrol Sectors"
+  },
+  "zones": [
+    {
+      "id": "english_channel",
+      "name": "English Channel & Dover Strait",
+      "gridCode": "Grid BF 51",
+      "difficulty": "High",
+      "distanceFromPortKm": 480,
+      "trafficDensity": "Heavy",
+      "escortPresence": "Heavy",
+      "weatherProfile": "Choppy / Frequent Fog",
+      "recommendedClasses": ["type_ub_i", "type_u_31"],
+      "spawnCoords": { "lat": 50.77, "lon": 0.45 },
+      "briefing": "High-value troop transports and cross-channel supply ferries, but heavily patrolled by destroyers, Q-ships, and anti-submarine mine nets."
+    },
+    {
+      "id": "western_approaches",
+      "name": "The Western Approaches (South of Ireland)",
+      "gridCode": "Grid BE 34",
+      "difficulty": "Medium",
+      "distanceFromPortKm": 1150,
+      "trafficDensity": "Very Heavy",
+      "escortPresence": "Moderate",
+      "weatherProfile": "Atlantic Swells / Gale Risk",
+      "recommendedClasses": ["type_u_31", "type_u_57"],
+      "spawnCoords": { "lat": 51.20, "lon": -10.50 },
+      "briefing": "The primary bottleneck for transatlantic merchant shipping bound for Liverpool and Bristol. Ideal hunting grounds for ocean-going U-boats."
+    },
+    {
+      "id": "north_sea_blockade",
+      "name": "North Sea & Scottish Coast",
+      "gridCode": "Grid AN 18",
+      "difficulty": "Low-Medium",
+      "distanceFromPortKm": 620,
+      "trafficDensity": "Moderate",
+      "escortPresence": "Low-Moderate",
+      "weatherProfile": "Cold / Rough Seas",
+      "recommendedClasses": ["type_ub_i", "type_u_31", "type_u_57"],
+      "spawnCoords": { "lat": 56.40, "lon": -1.80 },
+      "briefing": "Patrol the eastern approaches to Scapa Flow and the Firth of Forth. Watch for Royal Navy cruiser squadrons and Scandinavian neutral vessels."
+    },
+    {
+      "id": "bay_of_biscay",
+      "name": "Bay of Biscay & Iberian Coast",
+      "gridCode": "Grid BF 82",
+      "difficulty": "Medium-High",
+      "distanceFromPortKm": 1650,
+      "trafficDensity": "Moderate-Heavy",
+      "escortPresence": "Moderate",
+      "weatherProfile": "Clear / Heavy Ocean Roll",
+      "recommendedClasses": ["type_u_57", "type_u_139"],
+      "spawnCoords": { "lat": 45.50, "lon": -5.20 },
+      "briefing": "Long-range hunting ground intercepting Mediterranean and South Atlantic trade routes. Requires careful diesel fuel management."
+    }
+  ]
+}

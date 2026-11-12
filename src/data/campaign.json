@@ -1,0 +1,109 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "Imperial German Navy Ranks, Awards, and WWI Historical Eras (1914-1918)"
+  },
+  "ranks": [
+    {
+      "id": "leutnant_zur_see",
+      "title": "Leutnant zur See",
+      "minTonnage": 0,
+      "unlockedClasses": ["type_ub_i"]
+    },
+    {
+      "id": "oberleutnant_zur_see",
+      "title": "Oberleutnant zur See",
+      "minTonnage": 15000,
+      "unlockedClasses": ["type_ub_i", "type_u_31"]
+    },
+    {
+      "id": "kapitaenleutnant",
+      "title": "Kapitänleutnant",
+      "minTonnage": 60000,
+      "unlockedClasses": ["type_ub_i", "type_u_31", "type_u_57"]
+    },
+    {
+      "id": "korvettenkapitaen",
+      "title": "Korvettenkapitän",
+      "minTonnage": 150000,
+      "unlockedClasses": ["type_ub_i", "type_u_31", "type_u_57", "type_u_139"]
+    }
+  ],
+  "awards": [
+    {
+      "id": "iron_cross_2",
+      "name": "Iron Cross 2nd Class",
+      "conditionType": "patrols_completed",
+      "threshold": 1,
+      "description": "Awarded for completing your first war patrol in the Atlantic."
+    },
+    {
+      "id": "iron_cross_1",
+      "name": "Iron Cross 1st Class",
+      "conditionType": "tonnage",
+      "threshold": 25000,
+      "description": "Awarded for sinking 25,000 GRT of enemy shipping."
+    },
+    {
+      "id": "royal_house_order",
+      "name": "Royal House Order of Hohenzollern",
+      "conditionType": "tonnage",
+      "threshold": 75000,
+      "description": "Awarded for sustained commerce raiding excellence (75,000 GRT)."
+    },
+    {
+      "id": "pour_le_merite",
+      "name": "Pour le Mérite (Blue Max)",
+      "conditionType": "tonnage",
+      "threshold": 150000,
+      "description": "The Kingdom of Prussia's highest military order, awarded to top U-boat aces."
+    }
+  ],
+  "eras": [
+    {
+      "id": "1914_cruiser_rules",
+      "year": 1914,
+      "name": "Outbreak & Cruiser Rules",
+      "unrestrictedWarfare": false,
+      "neutralPenaltyMultiplier": 2.0,
+      "convoySpawnChance": 0.0,
+      "briefing": "Strictly adhere to Prize Rules. Do not sink neutral vessels without boarding and inspection."
+    },
+    {
+      "id": "1915_first_blockade",
+      "year": 1915,
+      "name": "First Submarine Blockade",
+      "unrestrictedWarfare": true,
+      "neutralPenaltyMultiplier": 1.5,
+      "convoySpawnChance": 0.1,
+      "briefing": "Waters around Great Britain are declared a War Zone. Beware of armed merchantmen and diplomatic incidents."
+    },
+    {
+      "id": "1916_sussex_pledge",
+      "year": 1916,
+      "name": "The Sussex Pledge Restrictions",
+      "unrestrictedWarfare": false,
+      "neutralPenaltyMultiplier": 2.5,
+      "convoySpawnChance": 0.25,
+      "briefing": "High Command has suspended unrestricted attacks following diplomatic pressure. Expect Q-Ship decoys."
+    },
+    {
+      "id": "1917_unrestricted",
+      "year": 1917,
+      "name": "Unrestricted Submarine Warfare",
+      "unrestrictedWarfare": true,
+      "neutralPenaltyMultiplier": 0.5,
+      "convoySpawnChance": 0.65,
+      "briefing": "All shipping bound for Allied ports may be engaged on sight. Allied escorts are organizing into guarded convoys."
+    },
+    {
+      "id": "1918_convoy_gauntlet",
+      "year": 1918,
+      "name": "The Convoy Gauntlet",
+      "unrestrictedWarfare": true,
+      "neutralPenaltyMultiplier": 0.5,
+      "convoySpawnChance": 0.85,
+      "briefing": "Heavy destroyer escorts, hydrophones, and depth charges guard every major lane. Strike swiftly and dive deep."
+    }
+  ]
+}

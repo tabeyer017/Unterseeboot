@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; object-src 'none'; base-uri 'none'">
+    <title>Unterseeboot</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="src/main-renderer.js"></script>
+  </head>
+  <body>
+    <section id="landing-screen" class="landing-overlay" aria-labelledby="landing-title">
+      <canvas id="landing-bg-canvas" aria-hidden="true"></canvas>
+      <div class="landing-frame">
+        <header class="landing-header">
+          <div class="naval-crest">
+            <svg class="icon" aria-hidden="true"><use href="#i-boat"/></svg>
+            <span>Kaiserliche Marine · Atlantik-Flottille</span>
+          </div>
+          <h1 class="game-title" id="landing-title">Unterseeboot</h1>
+          <p class="game-subtitle">The Atlantic submarine campaign <span>1914–1918</span></p>
+        </header>
+
+        <div id="main-menu-actions" class="menu-panel" role="group" aria-label="Main menu">
+          <button type="button" id="btn-resume-patrol" class="brass-btn primary" hidden>Resume Patrol</button>
+          <button type="button" id="btn-new-patrol" class="brass-btn primary">New Patrol</button>
+          <button type="button" id="btn-load-patrol" class="brass-btn">Load Saved Patrol</button>
+          <button type="button" id="btn-open-manual" class="brass-btn" aria-keyshortcuts="F1">Field Manual (PDF)</button>
+          <button type="button" id="btn-exit-desktop" class="brass-btn danger">Exit to Desktop</button>
+        </div>
+
+        <form id="new-patrol-panel" class="setup-panel" aria-labelledby="new-patrol-title" hidden>
+          <h2 id="new-patrol-title">Patrol Assignment</h2>
+          <div class="form-grid">
+            <div class="form-group"><label for="input-captain">Captain Name</label><input type="text" id="input-captain" autocomplete="off"></div>
+            <div class="form-group"><label for="select-year">Starting Year</label><select id="select-year" required></select></div>
+            <div class="form-group"><label for="select-uboat">U-boat Class</label><select id="select-uboat" required></select></div>
+            <div class="form-group"><label for="select-zone">Patrol Sector</label><select id="select-zone" aria-describedby="zone-briefing-text" required></select></div>
+          </div>
+          <div id="zone-briefing-box" class="briefing-card">
+            <strong>Sector Briefing</strong>
+            <span id="zone-briefing-grid"></span>
+            <p id="zone-briefing-text"></p>
+          </div>
+          <div class="panel-footer">
+            <button type="button" id="btn-back-menu" class="brass-btn">Back</button>
+            <button type="submit" id="btn-launch-patrol" class="brass-btn primary">Cast Off &amp; Submerge</button>
+          </div>
+        </form>
+        <p class="landing-status" id="landing-status" role="status"></p>
+      </div>
+    </section>
+
+    <svg class="symbol-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <symbol id="i-boat" viewBox="0 0 32 32">
+        <path d="M3 18h9l2-4h5l2 4h8c-2.3 3.2-5.3 4.6-9.3 4.6h-7.4C8.3 22.6 5.3 21.2 3 18ZM17 14v-3h3M4 26c2.7 1.6 5.3 1.6 8 0 2.7 1.6 5.3 1.6 8 0 2.7 1.6 5.3 1.6 8 0"/>
+      </symbol>
+      <symbol id="i-chart" viewBox="0 0 24 24">
+        <path d="m3 6 6-2 6 2 6-2v14l-6 2-6-2-6 2V6Zm6-2v14m6-12v14"/>
+      </symbol>
+      <symbol id="i-log" viewBox="0 0 24 24">
+        <path d="M5 3h14v17H7a2 2 0 0 1-2-2V3Zm0 15a2 2 0 0 1 2-2h12M9 7h6m-6 4h6"/>
+      </symbol>
+      <symbol id="i-compass" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="8.5"/><path d="m15.8 8.2-2.2 5.4-5.4 2.2 2.2-5.4 5.4-2.2Z"/>
+      </symbol>
+      <symbol id="i-controls" viewBox="0 0 24 24">
+        <path d="M6 3v5m0 4v9m6-18v10m0 4v4m6-18v2m0 4v12"/>
+        <circle cx="6" cy="10" r="2"/><circle cx="12" cy="15" r="2"/><circle cx="18" cy="7" r="2"/>
+      </symbol>
+      <symbol id="i-reserves" viewBox="0 0 24 24">
+        <path d="M4 7h16v13H4V7Zm3-3h3v3m4-3h3v3M7 13h4m-2-2v4m5-2h3"/>
+      </symbol>
+      <symbol id="i-fuel" viewBox="0 0 24 24">
+        <path d="M12 3c2.7 4.2 6 7.1 6 11a6 6 0 0 1-12 0c0-3.9 3.3-6.8 6-11Z"/>
+        <path d="M9 14a3 3 0 0 0 3 3"/>
+      </symbol>
+      <symbol id="i-battery" viewBox="0 0 24 24">
+        <path d="M3 7h16v10H3V7Zm16 3h2v4h-2m-5-4-3 3h2l-2 2"/>
+      </symbol>
+      <symbol id="i-mouse" viewBox="0 0 24 24">
+        <rect x="6" y="3" width="12" height="18" rx="6"/><path d="M6 10h12m-6-7v7"/>
+      </symbol>
+      <symbol id="i-crosshair" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="6"/><path d="M12 3v6m0 6v6M3 12h6m6 0h6"/>
+      </symbol>
+    </svg>
+
+    <header class="masthead" inert>
+      <div class="identity">
+        <div class="crest"><svg class="icon" aria-hidden="true"><use href="#i-boat"/></svg></div>
+        <div>
+          <h1>Unterseeboot</h1>
+          <div class="identity-caption">North Atlantic Command</div>
+        </div>
+      </div>
+      <div class="masthead-tools">
+        <nav class="view-tabs" aria-label="Patrol views">
+          <button type="button" id="chart-room-tab" class="tactical-toggle" aria-controls="chart-map" aria-pressed="true">Chart Room</button>
+          <button type="button" id="optical-toggle" class="tactical-toggle" aria-controls="optical-view" aria-pressed="false" aria-keyshortcuts="Space">Periscope <kbd>Space</kbd></button>
+          <button type="button" id="control-room-tab" class="tactical-toggle" aria-controls="control-room" aria-pressed="false" aria-keyshortcuts="C">Control Room <kbd>C</kbd></button>
+        </nav>
+        <div class="manual-controls">
+          <button type="button" id="open-manual" class="tactical-toggle" aria-keyshortcuts="F1">Manual <kbd>F1</kbd></button>
+          <details id="manual-options">
+            <summary class="tactical-toggle" aria-label="Manual export options" title="Manual export options">▾</summary>
+            <div class="manual-menu"><button type="button" id="save-manual-copy" class="tactical-toggle">Save Copy of PDF Manual…</button></div>
+          </details>
+          <output id="manual-status" role="status"></output>
+        </div>
+      </div>
+      <div class="watch">
+        <button type="button" id="open-campaign-log" class="log-trigger" aria-haspopup="dialog">
+          <svg class="icon" aria-hidden="true"><use href="#i-log"/></svg> Captain’s Log
+        </button>
+        <div class="clock">
+          <span class="eyebrow" id="patrol-date">12 MAR 1917</span>
+          <div><time id="patrol-time">06:40</time><span class="clock-zone">UTC</span></div>
+        </div>
+        <div class="time-control">
+          <span class="eyebrow" id="time-label">Time compression</span>
+          <div class="switches time-switches" role="group" aria-labelledby="time-label">
+            <button type="button" data-scale="1" aria-pressed="true">1×</button>
+            <button type="button" data-scale="10" aria-pressed="false">10×</button>
+            <button type="button" data-scale="50" aria-pressed="false">50×</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="dashboard" inert>
+      <section class="panel chart-panel" aria-labelledby="chart-title">
+        <header class="chart-header">
+          <div class="chart-title">
+            <div class="chart-emblem"><svg class="icon" aria-hidden="true"><use href="#i-chart"/></svg></div>
+            <div>
+              <h2 id="chart-title">Tactical Chart</h2>
+              <div class="eyebrow chart-subtitle" id="chart-subtitle">North Atlantic &amp; British Isles</div>
+            </div>
+          </div>
+          <div class="chart-conditions">
+            <div class="weather" id="weather" data-condition="clear">
+              <span class="eyebrow">Weather</span>
+              <span id="weather-condition">Clear</span>
+            </div>
+            <div class="sector" aria-label="Patrol sector">
+              <span class="sector-code" id="sector-code">A</span>
+              <div>
+                <div class="eyebrow">Patrol sector</div>
+                <div class="sector-name" id="sector-name">Western Approaches</div>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <div class="chart-viewport" id="chart-viewport">
+          <div class="chart-map" id="chart-map">
+            <canvas id="chart" aria-label="North Atlantic tactical chart" aria-describedby="chart-keys">
+              The tactical chart requires HTML5 Canvas.
+            </canvas>
+          </div>
+          <section id="optical-view" class="optical-view" aria-label="Conning tower and periscope" hidden>
+            <header class="optical-toolbar">
+              <span class="optical-bearing"><span class="eyebrow">Bearing</span> <output id="optical-bearing">062°</output></span>
+              <span class="optical-keys">A/D or drag to pan</span>
+              <button type="button" id="optical-zoom" class="tactical-toggle" aria-label="Toggle optical zoom (Z)">1.5× <span class="optical-shortcut">Z</span></button>
+              <button type="button" id="recognition-toggle" class="tactical-toggle" aria-controls="recognition-manual" aria-expanded="false">Target Recognition Manual</button>
+            </header>
+            <div class="optical-body" id="optical-body">
+              <div class="optical-window">
+                <canvas id="periscope-canvas" aria-label="Optical sight and range reticle" aria-describedby="optical-help"></canvas>
+                <div class="optical-contact" id="optical-contact">Center a ship in the reticle</div>
+                <div class="optical-blind" id="optical-blind" role="status" hidden>
+                  <strong id="optical-blind-title">Periscope Submerged - Blind</strong>
+                  <span id="optical-blind-help">Ascend to 12 m or scan with Hydrophones.</span>
+                </div>
+              </div>
+              <aside class="recognition-manual" id="recognition-manual" aria-label="Target Recognition Manual" hidden>
+                <p class="recognition-method">Range ≈ mast height × 1,000 ÷ mils. Mast heights are estimates.</p>
+                <div id="recognition-profiles"></div>
+              </aside>
+            </div>
+            <div class="tdc-console" aria-label="Torpedo Data Computer">
+              <div class="tdc-dials">
+                <label class="tdc-dial"><span>Target speed</span><input id="tdc-speed" type="number" min="0" max="40" step="0.5" value="10"><small>knots</small></label>
+                <label class="tdc-dial"><span>Estimated range</span><input id="tdc-range" type="number" min="50" max="20000" step="25" value="1700"><small>meters</small></label>
+                <label class="tdc-dial" title="0° bow-on, ±90° broadside, ±180° stern-on. Positive when viewed from the target’s starboard side."><span>Angle on bow</span><input id="tdc-angle" type="number" min="-180" max="180" step="1" value="165"><small>degrees</small></label>
+              </div>
+              <div class="tdc-gyro"><span>Calculated Gyro Angle</span><output id="tdc-gyro">—</output><small id="tdc-course"></small></div>
+              <div class="optical-weapons">
+                <button type="button" id="optical-fire" disabled>Fire Deck Gun</button>
+                <div id="optical-fire-status" role="status">Center a ship in the reticle</div>
+              </div>
+            </div>
+          </section>
+          <section class="control-room" id="control-room" aria-label="Damage and crew" hidden>
+            <div class="damage-banner">
+              <span id="damage-room-status" role="status">Compartments dry</span>
+              <span id="damage-trim"></span>
+            </div>
+            <div class="cutaway">
+              <canvas id="control-room-canvas" aria-hidden="true"></canvas>
+              <div class="cutaway-zones" id="cutaway-zones" role="group" aria-label="Submarine compartments"></div>
+            </div>
+            <div class="damage-console">
+              <div class="compartment-details">
+                <h3 id="compartment-name">Central Control Room</h3>
+                <p id="compartment-system">Depth control · 100%</p>
+                <dl class="compartment-readings">
+                  <div><dt>Flooding</dt><dd id="compartment-water">0%</dd></div>
+                  <div><dt>Damage</dt><dd id="compartment-damage">0%</dd></div>
+                  <div><dt>Chlorine</dt><dd id="compartment-gas">0%</dd></div>
+                </dl>
+              </div>
+              <div class="repair-parties">
+                <div class="crew-heading">
+                  <h3>Repair Parties</h3>
+                  <button type="button" id="crew-rest" class="tactical-toggle" disabled>Rest in Quarters</button>
+                </div>
+                <div class="crew-squads" id="crew-squads" role="group" aria-label="Crew squads"></div>
+                <p id="crew-instruction" role="status">Select a squad, then click a compartment.</p>
+              </div>
+              <div class="damage-actions">
+                <button type="button" id="pump-bilges" class="tactical-toggle" aria-pressed="false" disabled>Pump Bilges</button>
+                <span id="bilge-status">Battery powered</span>
+                <button type="button" id="ventilate-hull" class="tactical-toggle" aria-pressed="false" disabled>Ventilate Hull</button>
+                <span id="vent-status">Surface to vent</span>
+              </div>
+            </div>
+          </section>
+          <aside class="combat-console" id="combat-console" aria-labelledby="fire-control-title" hidden>
+            <div class="fire-control">
+              <header class="fire-control-header">
+                <svg class="icon" aria-hidden="true"><use href="#i-crosshair"/></svg>
+                <h3 id="fire-control-title">Fire Control</h3>
+              </header>
+              <label class="eyebrow" for="combat-target">Target</label>
+              <select id="combat-target"><option value="">Select a contact</option></select>
+              <div class="fire-details" id="combat-target-data">Choose a visible contact</div>
+              <div class="fire-details" id="combat-solution" hidden></div>
+
+              <div class="weapon-group">
+                <div class="weapon-label"><span class="eyebrow" id="deck-gun-label">Deck gun</span><span id="shell-count"></span></div>
+                <div class="tube-controls">
+                  <button type="button" class="fire-button" data-fire="deck" disabled>Fire deck gun</button>
+                  <button type="button" class="fire-button" data-fire="warning" disabled>Warning shot</button>
+                </div>
+                <div class="fire-details" id="deck-status"></div>
+              </div>
+              <div class="weapon-group" id="prize-controls" hidden>
+                <button type="button" class="fire-button" id="claim-tonnage">Claim tonnage</button>
+                <div class="fire-details" id="claim-status"></div>
+              </div>
+              <div class="weapon-group">
+                <div class="weapon-label"><span class="eyebrow">Torpedoes</span><span id="torpedo-count">6 / 6</span></div>
+                <div class="fire-details torpedo-model" id="torpedo-model"></div>
+                <div class="tube-controls">
+                  <button type="button" class="fire-button" data-fire="bow" disabled>Fire bow<small id="bow-tube-count"></small></button>
+                  <button type="button" class="fire-button" data-fire="stern" disabled>Fire stern<small id="stern-tube-count"></small></button>
+                </div>
+                <div class="fire-details" id="tube-status"></div>
+              </div>
+              <div class="combat-report" id="combat-report" role="status"></div>
+              <button type="button" class="fire-button" id="restart-patrol" hidden>Restart patrol</button>
+            </div>
+            <div class="tonnage-log">
+              <header class="tonnage-header"><h3 id="tonnage-title">Tonnage Sunk</h3><span id="tonnage-total">0 t</span></header>
+              <ol id="torpedo-events" aria-label="Torpedo impact log" hidden></ol>
+              <p id="empty-sinkings">No ships recorded</p>
+              <ol id="sinking-log" aria-label="Ship records" tabindex="0"></ol>
+            </div>
+          </aside>
+        </div>
+
+        <footer class="chart-footer">
+          <div class="chart-telemetry">
+            <div class="course" aria-live="polite">
+              <span class="course-light" aria-hidden="true"></span>
+              <span class="eyebrow">Course</span>
+              <span id="course-status">Holding heading</span>
+            </div>
+            <div class="chart-tools">
+              <div class="coordinates" title="Cursor coordinates on the chart, otherwise the boat position">
+                <svg class="icon" aria-hidden="true"><use href="#i-crosshair"/></svg>
+                <span id="coordinates">51°30′N&nbsp; 017°12′W</span>
+              </div>
+              <button type="button" id="tactical-mode" class="tactical-toggle" aria-controls="combat-console" aria-pressed="false">Tactical mode</button>
+              <button type="button" id="open-pause-menu" class="tactical-toggle" aria-haspopup="dialog" aria-keyshortcuts="Escape">Pause <kbd>Esc</kbd></button>
+            </div>
+          </div>
+          <div class="sensor-strip" aria-label="Contact detection">
+            <div class="sensor-readout"><span class="sight-key" aria-hidden="true"></span><span class="eyebrow">Sight</span><span id="sight-status"></span></div>
+            <div class="sensor-readout hydrophone-station">
+              <span class="hydrophone-key" aria-hidden="true"></span><span class="eyebrow">Hydrophones</span><span id="hydrophone-status">Standby</span>
+              <button type="button" class="tactical-toggle" id="hydrophone-scan" aria-label="Scan hydrophones" disabled>Scan</button>
+              <output id="hydrophone-result" role="status" aria-label="Hydrophone scan result"></output>
+            </div>
+            <span id="diplomacy-status" hidden></span>
+          </div>
+        </footer>
+      </section>
+
+      <aside class="instrument-stack" aria-label="Submarine instruments and controls">
+        <section class="panel instrument-panel" aria-labelledby="navigation-title">
+          <header class="panel-header">
+            <svg class="icon" aria-hidden="true"><use href="#i-compass"/></svg>
+            <h2 id="navigation-title">Navigation</h2>
+            <span class="unit-id" id="hull-status">U-31 · Hull 100%</span>
+          </header>
+
+          <div class="gauges">
+            <div class="heading-gauge">
+              <svg class="compass" viewBox="0 0 120 120" aria-hidden="true">
+                <circle class="compass-bezel" cx="60" cy="60" r="57"/>
+                <circle class="compass-face" cx="60" cy="60" r="52"/>
+                <circle class="compass-inner" cx="60" cy="60" r="32"/>
+                <path class="compass-cross" d="M60 32v56M32 60h56"/>
+                <g id="compass-ticks"></g>
+                <g class="compass-directions" text-anchor="middle" dominant-baseline="central">
+                  <text x="60" y="27" class="north">N</text>
+                  <text x="93" y="60">E</text>
+                  <text x="60" y="93">S</text>
+                  <text x="27" y="60">W</text>
+                </g>
+                <g id="compass-needle" transform="rotate(62 60 60)">
+                  <path class="needle-north" d="M60 34l6 26-6 5-6-5Z"/>
+                  <path class="needle-south" d="M60 86l-6-26 6-5 6 5Z"/>
+                </g>
+                <circle class="compass-pivot" cx="60" cy="60" r="3.4"/>
+              </svg>
+              <div class="heading-readout"><span class="eyebrow">Heading</span><span class="reading" id="heading">062°</span></div>
+            </div>
+
+            <div class="numeric-gauges">
+              <div class="speed-gauge">
+                <div class="eyebrow">Speed</div>
+                <div class="instrument-value"><span id="speed">8.0</span><span class="instrument-unit">kn</span></div>
+                <div id="speed-limit" class="speed-limit"></div>
+              </div>
+              <div class="depth-gauge">
+                <div class="depth-readout">
+                  <div class="eyebrow">Depth</div>
+                  <div class="instrument-value"><span id="depth">0</span><span class="instrument-unit">m</span></div>
+                  <div id="hull-stress" class="hull-stress" hidden>Hull stress</div>
+                </div>
+                <svg class="depth-scale" viewBox="0 0 52 64" aria-hidden="true">
+                  <path class="depth-track" d="M11 6v51m0-51h8M11 57h8"/>
+                  <path class="depth-track depth-test-tick" id="depth-test-tick" d="M11 36h8"/>
+                  <path class="depth-marker" id="depth-marker" d="M1 3l6 3-6 3Z"/>
+                  <text x="24" y="9">0</text><text x="24" y="39" id="depth-test-mark">50</text><text x="24" y="60" id="depth-crush-mark">85</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel instrument-panel" aria-labelledby="controls-title">
+          <header class="panel-header">
+            <svg class="icon" aria-hidden="true"><use href="#i-controls"/></svg>
+            <h2 id="controls-title">Boat Controls</h2>
+          </header>
+          <div class="control-body">
+            <div class="control-group">
+              <div class="eyebrow" id="telegraph-label">Engine telegraph</div>
+              <div class="switches telegraph-switches" role="group" aria-labelledby="telegraph-label">
+                <button type="button" data-telegraph="stop" aria-pressed="false">Stop</button>
+                <button type="button" data-telegraph="slow" aria-pressed="false">Slow</button>
+                <button type="button" data-telegraph="half" aria-pressed="true">Half</button>
+                <button type="button" data-telegraph="full" aria-pressed="false">Full</button>
+                <button type="button" data-telegraph="flank" aria-pressed="false">Flank</button>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="depth-order-label"><span class="eyebrow" id="depth-label">Depth order</span><span id="depth-order-status">0 m ordered</span></div>
+              <div class="switches depth-switches" role="group" aria-labelledby="depth-label">
+                <button type="button" data-depth="surface" aria-pressed="true"><span>Surface</span><small>0 m</small></button>
+                <button type="button" data-depth="periscope" aria-pressed="false"><span>Periscope</span><small>12 m</small></button>
+                <button type="button" data-depth="submerged" aria-pressed="false"><span>Submerged</span><small>40 m</small></button>
+              </div>
+              <div class="depth-adjustment">
+                <input type="range" id="ordered-depth" min="0" max="85" value="0" aria-label="Ordered depth in meters" aria-describedby="depth-limits">
+                <div id="depth-limits">Test 50 m · Crush 85 m</div>
+              </div>
+              <div class="switches depth-actions">
+                <button type="button" id="blow-ballast" aria-keyshortcuts="B" aria-describedby="ballast-air" title="Uses 25% of the full compressed-air reserve" disabled>Emergency Blow Ballast <kbd>B</kbd></button>
+                <output id="ballast-air" aria-label="Compressed air">Air 100%</output>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel instrument-panel" aria-labelledby="reserves-title">
+          <header class="panel-header">
+            <svg class="icon" aria-hidden="true"><use href="#i-reserves"/></svg>
+            <h2 id="reserves-title">Engineering</h2>
+          </header>
+          <div class="reserves-body">
+            <div class="reserve reserve-diesel">
+              <svg class="icon" aria-hidden="true"><use href="#i-fuel"/></svg>
+              <div class="reserve-instrument">
+                <div class="reserve-label"><label for="diesel-meter">Diesel fuel</label><span id="diesel-value">86%</span></div>
+                <progress id="diesel-meter" max="100" value="86"></progress>
+              </div>
+            </div>
+            <div class="reserve reserve-battery">
+              <svg class="icon" aria-hidden="true"><use href="#i-battery"/></svg>
+              <div class="reserve-instrument">
+                <div class="reserve-label"><label for="battery-meter">Battery</label><span id="battery-value">72%</span></div>
+                <progress id="battery-meter" max="100" value="72"></progress>
+              </div>
+            </div>
+          </div>
+        </section>
+      </aside>
+    </main>
+
+    <footer class="status-bar" inert>
+      <div class="chart-keys control-room-help">
+        <span><b>C</b> Return to chart</span>
+        <span><b>Click compartment</b> Inspect or assign selected squad</span>
+      </div>
+      <div class="chart-keys" id="chart-keys">
+        <span><svg class="icon" aria-hidden="true"><use href="#i-mouse"/></svg><b>Left click</b> Plot waypoint or engage</span>
+        <span><b>Right click</b> Clear course</span>
+        <span><b>Hover</b> Inspect contact</span>
+      </div>
+      <div class="chart-keys optical-help" id="optical-help">
+        <span><b>Space</b> Return to chart</span>
+        <span><b>Click a silhouette</b> Center the sight</span>
+      </div>
+      <div class="chart-legend">
+        <span><span class="lane-key" aria-hidden="true"></span> Shipping lane</span>
+        <span><span class="war-zone-key" aria-hidden="true"></span> War Zone</span>
+      </div>
+    </footer>
+
+    <dialog class="campaign-log" id="campaign-log" aria-labelledby="campaign-title">
+      <header class="campaign-header">
+        <div class="campaign-title">
+          <div class="chart-emblem"><svg class="icon" aria-hidden="true"><use href="#i-log"/></svg></div>
+          <h2 id="campaign-title">Captain’s Log</h2>
+        </div>
+        <button type="button" id="close-campaign-log" class="log-close" aria-label="Close Captain’s Log" autofocus>×</button>
+      </header>
+      <p class="campaign-captain" id="campaign-captain"></p>
+
+      <dl class="campaign-stats">
+        <div><dt class="eyebrow">Campaign date</dt><dd><time id="campaign-date"></time></dd></div>
+        <div><dt class="eyebrow">Patrol count</dt><dd id="campaign-patrols">1</dd></div>
+        <div><dt class="eyebrow">Crew experience</dt><dd id="campaign-experience">0 XP</dd></div>
+        <div><dt class="eyebrow" id="campaign-tonnage-title">Tonnage sunk</dt><dd id="campaign-tonnage">0 t</dd></div>
+      </dl>
+
+      <section class="campaign-record" aria-labelledby="campaign-record-title">
+        <h3 id="campaign-record-title">Ship records</h3>
+        <p id="empty-campaign-record">No ships recorded</p>
+        <ol id="campaign-record" aria-label="Campaign ship records" tabindex="0"></ol>
+      </section>
+
+      <footer class="campaign-footer">
+        <p id="campaign-status" role="status">Local save · captains-log.json</p>
+        <div class="patrol-setup">
+          <div><label for="next-patrol-date" class="eyebrow">Departure date (UTC)</label><input type="date" id="next-patrol-date" max="1918-12-31" required></div>
+          <div><label for="next-submarine" class="eyebrow">Next patrol class</label><select id="next-submarine"></select></div>
+        </div>
+        <div class="campaign-actions">
+          <button type="button" id="next-patrol" class="log-action" title="Start a fresh sortie and keep the campaign log">Start next patrol</button>
+          <button type="button" id="load-campaign" class="log-action">Load campaign</button>
+          <button type="button" id="save-campaign" class="log-action primary">Save campaign</button>
+        </div>
+      </footer>
+    </dialog>
+
+    <dialog class="campaign-log pause-menu" id="pause-menu" aria-labelledby="pause-title">
+      <header class="campaign-header">
+        <div class="campaign-title"><svg class="icon" aria-hidden="true"><use href="#i-boat"/></svg><h2 id="pause-title">Patrol Paused</h2></div>
+      </header>
+      <div class="pause-actions">
+        <button type="button" id="resume-patrol" class="brass-btn primary" autofocus>Resume Patrol</button>
+        <button type="button" id="return-to-main-menu" class="brass-btn" aria-keyshortcuts="Escape">Return to Main Menu <kbd>Esc</kbd></button>
+      </div>
+    </dialog>
+  </body>
+</html>
