@@ -7,9 +7,47 @@
   "type": "module",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "pack:win": "electron-builder --win --x64 --dir --publish never",
+    "dist:win": "electron-builder --win --x64 --publish never"
   },
   "devDependencies": {
-    "electron": "45.3.0"
+    "electron": "45.3.0",
+    "electron-builder": "26.18.0"
+  },
+  "build": {
+    "appId": "com.tabeyer017.unterseeboot",
+    "asar": true,
+    "publish": null,
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "index.html",
+      "styles.css",
+      "src/**",
+      "assets/**",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "signExecutable": false
+    },
+    "nsis": {
+      "artifactName": "Unterseeboot-${version}-win-${arch}-setup.${ext}",
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "deleteAppDataOnUninstall": false,
+      "createDesktopShortcut": true
+    },
+    "portable": {
+      "artifactName": "Unterseeboot-${version}-win-${arch}-portable.${ext}"
+    }
   }
 }
